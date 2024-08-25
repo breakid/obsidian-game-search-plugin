@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.12
+
+When comparing game names for Steam sync, use [fuzzball](https://github.com/nol13/fuzzball.js)
+could probably be tweaked to be more performant,
+but a good first step to better string compare
+
 ## 0.2.11
 
 Attempt to implement [38](https://github.com/CMorooney/obsidian-game-search-plugin/issues/38)
