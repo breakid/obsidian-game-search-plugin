@@ -2,6 +2,7 @@
 
 import type { Nullable } from '../main';
 import { requestUrl } from 'obsidian';
+import { extract } from 'fuzzball';
 import { SteamResponse, OwnedSteamGames, SteamGame, SteamWishlistedGame } from '@models/steam_game.model';
 
 export class SteamAPI {
@@ -10,20 +11,12 @@ export class SteamAPI {
   async tryGetGame(nameQuery: string): Promise<Nullable<SteamGame>> {
     try {
       const games = await this.getOwnedGames();
-      for (const game of games) {
-        if (
-          game.name.toLowerCase().contains(nameQuery.toLowerCase()) ||
-          nameQuery.toLowerCase().contains(game.name.toLowerCase())
-        ) {
-          return game;
-        }
-      }
+      const results = extract(nameQuery, games, { processor: g => g.name, limit: 1, cutoff: 80, returnObjects: true });
+      return results?.[0]?.choice ?? null;
     } catch (error) {
       console.warn('[Game Search][Steam API][tryGetGame]' + error);
       throw error;
     }
-
-    return null;
   }
 
   async getOwnedGames(): Promise<SteamGame[]> {
