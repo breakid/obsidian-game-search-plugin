@@ -1,4 +1,5 @@
 import { TFile, Notice, Vault, FileManager, normalizePath } from 'obsidian';
+import { extract } from 'fuzzball';
 import { GameSearchPluginSettings } from '@settings/settings';
 import type { Nullable } from '../main';
 import { SteamAPI } from '@src/apis/steam_api';
@@ -33,7 +34,9 @@ export async function findAndSyncSteamGame(
 ): Promise<void> {
   let rawgGame: Nullable<RAWGGameFromSearch>;
   try {
-    rawgGame = (await rawgApi.getByQuery(name, true))[0];
+    const rawgGames = await rawgApi.getByQuery(name, true);
+    const results = extract(name, rawgGames, { processor: g => g.name, limit: 1, cutoff: 80, returnObjects: true });
+    rawgGame = results?.[0]?.choice;
   } catch (rawgApiError) {
     console.warn('[Game Search][Steam Sync][ERROR] getting RAWG game for ' + logDescription + ' game ' + name);
     console.warn(rawgApiError);
