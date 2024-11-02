@@ -82,7 +82,7 @@ export function replaceVariableSyntax(game: RAWGGame | RAWGGameFromSearch, text:
 
   return entries
     .reduce((result, [key, val = '']) => {
-      return result.replace(new RegExp(`{{${key}}}`, 'ig'), val);
+      return result.replace(new RegExp(`{{${key}}}`, 'ig'), ((typeof val === 'object' && val !== null && 'name' in val) ? val.name : val));
     }, text)
     .replace(/{{\w+}}/gi, '')
     .trim();
@@ -157,7 +157,7 @@ export function stringToMap(s: string): Map<string, string> {
   const lines = s.split('\n');
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].contains(':')) {
-      // Split on the first colom
+      // Split on the first colon
       const components = lines[i].split(/:(.+)/);
       if (components[0] && components[1] && components[0].trim() && components[1].trim()) {
         m.set(components[0].trim(), components[1].trim());
