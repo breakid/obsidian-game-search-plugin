@@ -82,7 +82,10 @@ export function replaceVariableSyntax(game: RAWGGame | RAWGGameFromSearch, text:
 
   return entries
     .reduce((result, [key, val = '']) => {
-      return result.replace(new RegExp(`{{${key}}}`, 'ig'), ((typeof val === 'object' && val !== null && 'name' in val) ? val.name : val));
+      return result.replace(
+        new RegExp(`{{${key}}}`, 'ig'),
+        typeof val === 'object' && val !== null && 'name' in val ? val.name : val,
+      );
     }, text)
     .replace(/{{\w+}}/gi, '')
     .trim();
