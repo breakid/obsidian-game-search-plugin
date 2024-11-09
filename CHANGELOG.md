@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.13
+
+Fixes rendering of ESRB rating, partially fixes regeneration of templated metadata
+esrb: [issue 46](https://github.com/CMorooney/obsidian-game-search-plugin/issues/46)
+templating: [issue 45](https://github.com/CMorooney/obsidian-game-search-plugin/issues/45)
+(PR [47](https://github.com/CMorooney/obsidian-game-search-plugin/pull/47))
+
 ## 0.2.12
 
 When comparing game names for Steam sync, use [fuzzball](https://github.com/nol13/fuzzball.js)
