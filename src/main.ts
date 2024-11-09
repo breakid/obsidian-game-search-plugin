@@ -166,7 +166,7 @@ export default class GameSearchPlugin extends Plugin {
               const regeneratedContent = await this.getRenderedContents(game);
 
               // find/capture the regenerated metadata
-              let regeneratedMetadata: Nullable<Map<string, string>> = undefined;
+              let regeneratedMetadata: Nullable<Map<string, string>> = existingMetadata;
               if (regeneratedContent.indexOf('---') === 0) {
                 const foundRegeneratedMetadata = regeneratedContent.match(/---[\S\s]*?---/);
                 if (foundRegeneratedMetadata.length > 0) {
@@ -209,10 +209,10 @@ export default class GameSearchPlugin extends Plugin {
                 }
               }
 
-              // replace the metdata in the existing content with the newly generated metadata
+              // replace the metadata in the existing content with the newly generated metadata
               // if there is no metadata in the existing file, just toss the newly generated metadata at the top of the content
 
-              // make sure the first instance of `---` is at the start of the file and therefor declaring metadata
+              // make sure the first instance of `---` is at the start of the file and therefore declaring metadata
               // (and not some horizontal rule later in the file)
               if (existingContent.indexOf('---') === 0) {
                 existingContent = existingContent.replace(
