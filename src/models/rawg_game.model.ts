@@ -126,13 +126,13 @@ export interface RAWGPlatformDetailed {
   released_at: string;
 }
 
-interface RAWGStore {
+export interface RAWGStore {
   id: number;
   name: string;
   slug: string;
 }
 
-interface RAWGStoreDetailed {
+export interface RAWGStoreDetailed {
   id: number;
   url: string;
   store: {

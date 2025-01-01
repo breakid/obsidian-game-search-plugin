@@ -7,6 +7,8 @@ import {
   RAWGDeveloper,
   RAWGMetacriticPlatform,
   RAWGTag,
+  RAWGStore,
+  RAWGStoreDetailed,
   releaseYearForRAWGGame,
 } from '@models/rawg_game.model';
 
@@ -59,6 +61,12 @@ export function replaceVariableSyntax(game: RAWGGame | RAWGGameFromSearch, text:
     };
   }
 
+  if (game.stores) {
+    game.stores.toString = function (this: RAWGStore[]) {
+      return this.map(p => p.name).join(', ');
+    };
+  }
+
   const detailedGame = game as RAWGGame;
   if (detailedGame) {
     if (detailedGame.developers) {
@@ -74,6 +82,11 @@ export function replaceVariableSyntax(game: RAWGGame | RAWGGameFromSearch, text:
     if (detailedGame.metacritic_platforms) {
       detailedGame.metacritic_platforms.toString = function (this: RAWGMetacriticPlatform[]) {
         return this.map(p => p.platform.platform.name + ': ' + p.metascore).join(', ');
+      };
+    }
+    if (detailedGame.stores) {
+      game.stores.toString = function (this: RAWGStoreDetailed[]) {
+        return this.map(p => p.store.name).join(', ');
       };
     }
   }
