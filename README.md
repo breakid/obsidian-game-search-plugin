@@ -60,25 +60,29 @@ so that you can auto-generate content for your game notes.
 
 ### Example Template
 
-The following is an example template. A complete list of template variables provided by the plugin
- can be found under [Template Variable Definitions](#template-variables-definitions). 
- **Note**: Array properties will output as a comma separated string.
+The following is an example template.
 
-```
+Note that including data from lists or
+complex objects may require templater to extract what you want
+(e.g `genres`, `platforms`, `stores`, `publishers`, `developers` in example template)
+
+A complete list of template variables provided by the plugin
+can be found under [Template Variable Definitions](#template-variables-definitions).
+
+```YAML
 ---
-tag: Game 🎮
-genres: {{genres}}
-platforms: {{platforms}}
+tag: Game 🎮 
+id: {{id}}
+genres: <%= {{genres}}.map(g => `${g.name}`) %>
+platforms: <%= {{platforms}}.map(p => `${p.platform.name}`) %>
 release_date: {{released}}
 background_image: {{background_image}}
+metacritic_score: {{metacritic}}
+stores: <%= {{stores}}.map(n => `${n.store.name}`) %>
+publishers: <%= {{publishers}}.map(p => `${p.name}`) %>
+developers: <%= {{developers}}.map(d => `${d.name}`) %>
 ---
-
 ![{{name}}]({{background_image}})
-
-Genres: {{genres}}
-Release Date: {{released}}
-Publishers: {{publishers}}
-Developers: {{developers}}
 ```
 
 ## Regenerating File Metadata
