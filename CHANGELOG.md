@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.14
+
+Adjusts how complex and array objects from RAWG are provided to template/templater
+see changes to README in `39f58b0851be94c97209fdbe0ea7c47597fff737`
+[Issue 48](https://github.com/CMorooney/obsidian-game-search-plugin/issues/48)
+
 ## 0.2.13
 
 Fixes rendering of ESRB rating, partially fixes regeneration of templated metadata

@@ -7,6 +7,8 @@ import {
   RAWGDeveloper,
   RAWGMetacriticPlatform,
   RAWGTag,
+  RAWGStore,
+  RAWGStoreDetailed,
   releaseYearForRAWGGame,
 } from '@models/rawg_game.model';
 
@@ -43,19 +45,25 @@ export function replaceVariableSyntax(game: RAWGGame | RAWGGameFromSearch, text:
 
   if (game.genres) {
     game.genres.toString = function (this: RAWGGenre[]) {
-      return this.map(g => g.name).join(', ');
+      return JSON.stringify(this);
     };
   }
 
   if (game.platforms) {
     game.platforms.toString = function (this: RAWGPlatformDetailed[]) {
-      return this.map(p => p.platform.name).join(', ');
+      return JSON.stringify(this);
     };
   }
 
   if (game.tags) {
     game.tags.toString = function (this: RAWGTag[]) {
-      return this.map(p => p.name).join(', ');
+      return JSON.stringify(this);
+    };
+  }
+
+  if (game.stores) {
+    game.stores.toString = function (this: RAWGStore[]) {
+      return JSON.stringify(this);
     };
   }
 
@@ -63,17 +71,22 @@ export function replaceVariableSyntax(game: RAWGGame | RAWGGameFromSearch, text:
   if (detailedGame) {
     if (detailedGame.developers) {
       detailedGame.developers.toString = function (this: RAWGDeveloper[]) {
-        return this.map(p => p.name).join(', ');
+        return JSON.stringify(this);
       };
     }
     if (detailedGame.publishers) {
       detailedGame.publishers.toString = function (this: RAWGPublisher[]) {
-        return this.map(p => p.name).join(', ');
+        return JSON.stringify(this);
       };
     }
     if (detailedGame.metacritic_platforms) {
       detailedGame.metacritic_platforms.toString = function (this: RAWGMetacriticPlatform[]) {
-        return this.map(p => p.platform.platform.name + ': ' + p.metascore).join(', ');
+        return JSON.stringify(this);
+      };
+    }
+    if (detailedGame.stores) {
+      game.stores.toString = function (this: RAWGStoreDetailed[]) {
+        return JSON.stringify(this);
       };
     }
   }
