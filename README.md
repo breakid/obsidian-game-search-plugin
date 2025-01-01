@@ -19,7 +19,8 @@ Use to query game using a game title (uses RAWG Game API to get the game informa
 ## How to Install
 
 Click the link to install the Game Search plugin: [Install Link](https://github.com/CMorooney/obsidian-game-search-plugin)
-Or, search 'Game Search' in the Obsidian Community plugin directory and install it from there.
+Or, search 'Game Search' in the Obsidian Community plugin directory
+and install it from there.
 
 ## Basic Usage
 
@@ -37,14 +38,20 @@ Or, search 'Game Search' in the Obsidian Community plugin directory and install 
 Optionally, you can auto-sync your Steam Library and Wishlist.
 
 1. Acquire an API key from [Steam](https://steamcommunity.com/dev)
-2. Make note of your user SteamId (navigate to your profile on the web and check the URL)
+2. Make note of your user SteamId
+   (navigate to your profile on the web and check the URL)
 3. Enter your Steam API key and Id into the Game Search plugin settings
-4. Ensure your Steam Privacy Settings have your wishlist set to `Public` if you wish to sync wishlist items
-5. (Optional) provide metadata to be injected into wishlisted and/or owned games
-   - For example, I add `status: backlog` to wishlist games and `owned_platform: steam` to owned games
+4. Ensure your Steam Privacy Settings have your wishlist set to `Public`
+   if you wish to sync wishlist items
+5. (Optional) provide metadata to be injected into
+    wishlisted and/or owned games
+   - For example, I add `status: backlog` to wishlist games and
+     `owned_platform: steam` to owned games
 6. Use command `Sync Steam` to begin a sync.
-   - This is not speedy, especially with larger libraries. There is a progress bar to provide some feedback but just...heads up
-7. **NOTE**: Synced Steam games will automatically have a `steamId` metadata property added. Don't remove this.
+   - This is not speedy, especially with larger libraries.
+     There is a progress bar to provide some feedback but just...heads up
+7. **NOTE**: Synced Steam games will automatically have a `steamId`
+   metadata property added. Don't remove this.
 
 ## Templating
 
@@ -89,14 +96,15 @@ is likely that the body of a game note is used for keepsake/TODO lists/personal 
 while the main portion of the templating will happen in the metadata. I'm open to
 revisiting this if it proves to be a bad idea.
 
-**Note**: `steamId`, `steamPlaytimeForever`, `steamPlaytime2Weeks`, and any user-provided metadata to be injected into
-Steam games (added via settings) will be preserved.
+**Note**: `steamId`, `steamPlaytimeForever`, `steamPlaytime2Weeks`, and any user-provided
+metadata to be injected into Steam games (added via settings) will be preserved.
 
 ## Other Settings
 
 ### New file location
 
-Set the folder location where the new file is created. Otherwise, a new file is created in the Obsidian root folder.
+Set the folder location where the new file is created.
+Otherwise, a new file is created in the Obsidian root folder.
 
 ### New file name
 
@@ -110,9 +118,9 @@ with a game in your Steam library to so that steam metadata gets immediately inj
 
 ### Template variables definitions
 
-The following table lists and describes each variable that can be used in your template. To use a 
-variable in your template, simply write the variable name surrounded by curly braces (e.g., 
-`{{name}}`).
+The following table lists and describes each variable that can be used in your template.
+To use a simple string variable in your template, simply write the variable name
+surrounded by curly braces (e.g, `{{name}}`).
 
 | Name                 | Description                                                   |
 | -------------------- | ------------------------------------------------------------- |
